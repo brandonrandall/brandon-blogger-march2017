@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310173459) do
+ActiveRecord::Schema.define(version: 20170310223718) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20170310173459) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
   end
+
+  create_table "authors", force: true do |t|
+    t.string   "username",         null: false
+    t.string   "email",            null: false
+    t.string   "crypted_password", null: false
+    t.string   "salt",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authors", ["email"], name: "index_authors_on_email", unique: true
 
   create_table "comments", force: true do |t|
     t.string   "author_name"

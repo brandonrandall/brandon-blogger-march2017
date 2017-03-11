@@ -5,6 +5,8 @@ Blogger::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'articles#index'
+  get 'login' => 'author_sessions#new'
+  get 'logout' => 'author_sessions#destroy'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   resources :articles do
@@ -12,6 +14,8 @@ Blogger::Application.routes.draw do
   end
 
   resources :tags
+  resources :authors
+  resources :author_sessions, only: [ :new, :create, :destroy]
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
